@@ -1,0 +1,15 @@
+{
+    "name": "nikitaababii/mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "nik39n",
+            "email": "40721920+nik39n@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
