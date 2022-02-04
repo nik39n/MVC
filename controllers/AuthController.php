@@ -8,8 +8,17 @@ use app\models\User;
 
 class AuthController extends Controller
 {
-    public function login()
+    public function login(Request $request,Response $response)
     {
+
+        $loginForm = new LoginForm();
+        if($request->isPost()){
+            $loginForm->loadData($request->getBody());
+            if ($loginForm->validate() && $loginForm->login()){
+                $response->redirect('/');
+                return;
+            }
+        }
         $this->setLayout('auth');
         return $this->render('login');
 
@@ -17,23 +26,27 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $registerModel = new User();
+        $user = new User();
         if ($request->isPost()){
-            $registerModel->loadData($request->getBody());
+            $user->loadData($request->getBody());
 
 
 
 
-            if ($registerModel->validate() && $registerModel->register()){
-                return 'Success';
+            if ($user->validate() && $user->save()){
+
+                Application::$app->session->setFlash('success','Thanks for registering');
+                Application::$app->response->redirect('/');
+                exit;
+
             }
             return $this->render('register', [
-                'model' => $registerModel
+                'model' => $user
             ]);
         }
         $this->setLayout('auth');
         return $this->render('register', [
-            'model' => $registerModel
+            'model' => $user
         ]);
     }
 }
