@@ -11,5 +11,7 @@
             "email": "40721920+nik39n@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
 }
