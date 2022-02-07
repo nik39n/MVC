@@ -1,5 +1,4 @@
 <?php
-
 ?>
 
 
@@ -31,6 +30,7 @@
                     <a class="nav-link" href="/contact">contact</a>
                 </li>
             </ul>
+            <?php if (app\core\Application::isGuest()): ?>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="/login">Login</a>
@@ -39,6 +39,18 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
             </ul>
+            <?php else:?>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Welcome <?php echo app\core\Application::$app->user->getDisplayName()?>
+                        (logout)
+                    </a>
+                </li>
+            </ul>
+            <?php endif;?>
         </div>
     </div>
 </nav>
